@@ -16,8 +16,8 @@ public class ExplodeCubes : MonoBehaviour
                 child.gameObject.GetComponent<Rigidbody>().AddExplosionForce(70f, Vector3.up, 5f);
                 child.SetParent(null);
             }
-            restartButton.SetActive(true);
-            Camera.main.transform.position -= new Vector3(0, 0, 3f);
+            restartButton.SetActive(true); //активируется при проигрыше
+            Camera.main.transform.localPosition -= new Vector3(0, 0, 3f);
             Destroy(collision.gameObject);
             _collsionSet = true;
         }

@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public Transform cubeToPlace;
     private float camMoveToYPosition, camMoveSpeed = 2f;
 
-    public GameObject cubeToCreate, allCubes;
+    public GameObject cubeToCreate, allCubes, vfx;
     public GameObject[] canvasStartPage;
     private Rigidbody allCubesRb;
 
@@ -71,6 +71,13 @@ public class GameController : MonoBehaviour
             newCube.transform.SetParent(allCubes.transform);
             nowCube.setVector(cubeToPlace.position);
             allCubesPositions.Add(nowCube.getVector());
+
+            //установка звукого эффекта
+            if (PlayerPrefs.GetString("music") != "No")
+                GetComponent<AudioSource>().Play();
+
+            GameObject newVfx = Instantiate(vfx, newCube.transform.position, Quaternion.identity) as GameObject;
+            Destroy(newVfx, 2f);
 
             allCubesRb.isKinematic = true;
             allCubesRb.isKinematic = false;
